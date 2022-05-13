@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addComment } from "../Features/Reducers/Comments";
 
 const TypeComment = () => {
     const [com,setCom]  = useState("")
     const dispatch = useDispatch()
+    const ref = createRef()
+    useEffect(() => {
+      ref.current.focus()
+    },[ref])
+
     const handleSubmit = () =>  {
         dispatch(addComment(com));
         setCom("")
+        ref.current.focus()
+        // alert(ref.current.value)
     }
   return (
     <div style = {{display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10}}>
-      <textarea value = {com} onChange = {(e) => setCom(e.target.value)}></textarea>
+      <textarea ref = {ref} value = {com} onChange = {(e) => setCom(e.target.value)}></textarea>
       <button onClick = {handleSubmit}>Submit</button>
     </div>
   );
