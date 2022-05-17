@@ -16,6 +16,7 @@ function App() {
       </ErrorBoundary>
       
       <Router>
+        
         <Routes>
           <Route path = "/" element = {<><span>Comments are rendered here!!</span><RenderComments/></>} default/>
           <Route path = '/post' element = {<><TypeComment/></>}/>
